@@ -79,7 +79,8 @@ builder.Services.AddSingleton<Kernel>((_) =>
           var credential = new DefaultAzureCredential(
               new DefaultAzureCredentialOptions
               {
-                  ManagedIdentityClientId = userAssignedClientId
+                    ManagedIdentityClientId = userAssignedClientId,
+                    TenantId = builder.Configuration["AZURE_TENANT_ID"]
               });
           CosmosClient client = new(
               accountEndpoint: builder.Configuration["CosmosDB:AccountEndpoint"]!,
